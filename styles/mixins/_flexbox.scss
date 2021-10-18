@@ -1,0 +1,40 @@
+// Map
+// flex-start -> start
+// flex-end -> end
+// space-between -> between
+// space-around -> around
+// stretch -> stretch
+// center -> center
+
+$flex-map: (
+  start: flex-start,
+  end: flex-end,
+  between: space-between,
+  around: space-around,
+  stretch: stretch,
+  center: center,
+);
+
+// map-get : sass에서 제공
+@function _get_flex_value($key) {
+  @return map-get($flex-map, $key);
+}
+
+@mixin flexbox($justify: center, $align: center) {
+  display: flex;
+  align-items: _get_flex_value($align);
+  justify-content: _get_flex_value($justify);
+}
+
+@mixin inline-flexbox($justify: center, $align: center) {
+  display: inline-flex;
+  align-items: _get_flex_value($align);
+  justify-content: _get_flex_value($justify);
+}
+
+@mixin column-flexbox($justify: center, $align: center) {
+  display: flex;
+  flex-direction: column;
+  align-items: _get_flex_value($align);
+  justify-content: _get_flex_value($justify);
+}
